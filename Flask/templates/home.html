@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement prediction</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap');
+        *{
+            font-family:Signika Negative;
+        }
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            margin:0;
+            background-image: url('../static/img/a13.jpg');
+        }
+        #innerSection{
+            background-color:blue;
+        }
+        #mainSection{
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            justify-items: center;
+            align-items: center;
+        }
+        #innerSection{
+            display: flex;
+            flex-direction: column;
+            align-content: stretch;
+            border-radius: 5px;
+            border: 2px solid white;
+        }
+        #about{
+            padding:20px;
+        }
+        #formContainer{
+            border-top:3px solid white;
+            /* border-bottom:3px solid white; */
+            max-height: 0px;
+            transition: max-height 4s;
+            overflow: hidden;
+        }
+        #formContainer.visible{
+            max-height: 600px;
+        }
+        #formContainer form{
+            display: grid;
+            padding:20px;
+            grid-auto-flow: row;
+            /* justify-items: right; */
+            gap: 10px;
+        }
+        #frame{
+            max-height: 0px;
+            border: none;
+            transition: max-height 1s;
+            overflow: hidden;
+        }
+        #about{
+            color:white;
+        }
+        p{
+            margin: 0;
+            display: grid;
+            gap:10px;
+            grid-auto-flow: column;
+        }
+        label{
+            display: block;
+            /* text-align: right; */
+            color: white;
+        }
+        input,select{
+            padding:10px ;
+            border: 0px;
+            width: 100%;
+            margin-top: 5px;
+        }
+        input[type=submit]{
+            background-color: rgb(0, 255, 0);
+            color: black;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <section id="mainSection">
+        <div id="innerSection">
+            <div id="about">
+                <h1>College Placement Prediction</h1>
+                <a style="cursor:pointer;" onclick="showForm()">Are you interested in finding whether you can get placed or not...?</a>
+            </div>
+            <div id="formContainer">
+                <form action="/prediction" method="post" onsubmit="onSubmitFun()" target="frame">
+                    <p>
+                        <label>Age : <input value="22" name='Age' type="number" required></label>
+                    </p>
+                    <p>
+                        <label>Gender<select name='Gender' type="number" required><option>Male</option><option>Female</option></select></label>
+                        <label>Stream
+                            <select value="1" name='Stream' type="number" required>
+                                <option>Computer Science</option>
+                                <option>Information Technology</option>
+                                <option>Electronics And Communication</option>
+                                <option>Mechanical</option>
+                                <option>Electrical</option>
+                                <option>Civil</option>
+                                
+                            </select>    
+                        </label>
+                    </p>
+                    <p>
+                        <label>Inernships<input value="1" name='Internships' type="number" required></label>
+                        <label>CGPA<input value="8" name='CGPA' type="number" required></label>    
+                    </p>
+                    <label>HistoryOfBacklogs<input value="0" name='HistoryOfBacklogs' type="number" required ></label>
+                    <input type="submit" value="predict">
+                </form>            
+            </div>
+            <iframe id="frame" name="frame">
+
+            </iframe>
+        </div>
+    </section>
+    <script>
+        function showForm(){
+            document.getElementById('formContainer').classList.add('visible')
+        }
+        function onSubmitFun(){
+            f = document.getElementById('frame')
+            f.style.maxHeight = '110px';
+        }
+    </script>
+</body>
+</html>
